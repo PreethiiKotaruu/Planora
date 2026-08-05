@@ -36,7 +36,7 @@ Creates groups, invites friends, manages polls, and finalizes decisions.
 
 ### Group Member
 
-Joins groups, adds suggestions, votes, comments, and views final plans.
+Joins groups, adds suggestions, votes, comments, and views finalized plans.
 
 ## Product Principles
 
@@ -47,7 +47,22 @@ Joins groups, adds suggestions, votes, comments, and views final plans.
 - Improved through real-user feedback
 - AI enhances rather than controls the experience
 
+## Project Duration
+
+Eight weeks
 
 ## Main Goal
 
 Design, develop, test, deploy, and release Planora to real users.
+
+## Success Criteria
+
+Planora will be considered successful when:
+
+- The application is deployed through a public URL.
+- A user can complete the full registration-to-final-decision workflow.
+- At least 10 people are invited to test the application.
+- Feedback is collected from at least 5 users.
+- The most important usability issues discovered during testing are fixed.
+- The application works on both desktop and mobile screen sizes.
+- An optional AI Smart Planner feature is evaluated after the MVP is stable.
