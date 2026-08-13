@@ -1,0 +1,56 @@
+main {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  padding: 2rem;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+
+  color: var(--color-primary);
+  font-size: 3.5rem;
+  font-weight: 700;
+}
+
+p {
+  max-width: 520px;
+  margin: 0 0 1.5rem;
+
+  color: var(--color-text-secondary);
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+
+  padding: 0.9rem 1.6rem;
+
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
