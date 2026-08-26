@@ -1,6 +1,11 @@
 package com.planora.backend.controller;
 
+import com.planora.backend.dto.LoginRequest;
+import com.planora.backend.dto.LoginResponse;
 import com.planora.backend.dto.RegisterRequest;
+import com.planora.backend.entity.User;
+import com.planora.backend.service.AuthenticationService;
+import com.planora.backend.service.JwtService;
 import com.planora.backend.service.RegistrationService;
 
 import jakarta.validation.Valid;
@@ -13,16 +18,38 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final RegistrationService registrationService;
+    private final AuthenticationService authenticationService;
+    private final JwtService jwtService;
 
-    public AuthController(RegistrationService registrationService) {
+    public AuthController(
+            RegistrationService registrationService,
+            AuthenticationService authenticationService,
+            JwtService jwtService) {
+
         this.registrationService = registrationService;
+        this.authenticationService = authenticationService;
+        this.jwtService = jwtService;
     }
 
     @PostMapping("/api/v1/auth/register")
-    public String register(@Valid @RequestBody RegisterRequest request) {
+    public String register(
+            @Valid @RequestBody RegisterRequest request) {
 
         registrationService.register(request);
 
         return "User registered successfully";
+    }
+
+    @PostMapping("/api/v1/auth/login")
+    public LoginResponse login(
+            @Valid @RequestBody LoginRequest request) {
+
+        User user =
+                authenticationService.authenticate(request);
+
+        String token =
+                jwtService.generateToken(user);
+
+        return new LoginResponse(token);
     }
 }
