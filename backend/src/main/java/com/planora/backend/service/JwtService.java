@@ -6,6 +6,7 @@ import javax.crypto.SecretKey;
 
 import com.planora.backend.entity.User;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -22,11 +23,13 @@ public class JwtService {
     @Value("${jwt.expiration}")
     private long jwtExpiration;
 
-    public String generateToken(User user) {
-
-        SecretKey key = Keys.hmacShaKeyFor(
+    private SecretKey getSigningKey() {
+        return Keys.hmacShaKeyFor(
                 Decoders.BASE64.decode(jwtSecret)
         );
+    }
+
+    public String generateToken(User user) {
 
         Date now = new Date();
 
@@ -37,7 +40,18 @@ public class JwtService {
                 .subject(user.getEmail())
                 .issuedAt(now)
                 .expiration(expiration)
-                .signWith(key)
+                .signWith(getSigningKey())
                 .compact();
+    }
+
+    public String extractEmail(String token) {
+
+        Claims claims = Jwts.parser()
+                .verifyWith(getSigningKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+
+        return claims.getSubject();
     }
 }
