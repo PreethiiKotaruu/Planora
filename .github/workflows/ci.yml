@@ -17,12 +17,12 @@ jobs:
         image: postgres:16
         env:
           POSTGRES_DB: planora
-          POSTGRES_USER: postgres
+          POSTGRES_USER: planora_app
           POSTGRES_PASSWORD: planora_dev_password
         ports:
           - 5432:5432
         options: >-
-          --health-cmd="pg_isready -U postgres"
+          --health-cmd="pg_isready -U planora_app"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
